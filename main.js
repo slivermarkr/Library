@@ -22,13 +22,10 @@ function addBookToLibrary() {
 
  let newBook = new Book(title,author,pages,status)
  myLibrary.push(newBook);
+ createCard()
 }
-btn.addEventListener('click',createCard);
+btn.addEventListener('click',addBookToLibrary);
 
-let book1 = new Book("The Hobbit", "JRR Tolkien",700, "Yes")
-myLibrary.push(book1)
-let book2 = new Book("The Hobbit", "JRR Tolkien",700, "Yes")
-myLibrary.push(book2)
 
 
 function createCard() {
