@@ -23,12 +23,33 @@ function addBookToLibrary() {
  let newBook = new Book(title,author,pages,status)
  myLibrary.push(newBook);
 }
-btn.addEventListener('click',addBookToLibrary);
+btn.addEventListener('click',createCard);
+
+let book1 = new Book("The Hobbit", "JRR Tolkien",700, "Yes")
+myLibrary.push(book1)
+let book2 = new Book("The Hobbit", "JRR Tolkien",700, "Yes")
+myLibrary.push(book2)
 
 
+function createCard() {
+ let card = document.createElement("div")
+ card.classList = "card";
+ cardContainer.appendChild(card);
+ let title = document.createElement("div");
+ let author = document.createElement("div");
+ let pages = document.createElement("div");
+ let status = document.createElement("div");
 
-myLibrary.forEach(book => {
- for(let key in book) {
-  console.log(`${key}:${book[key]}`)
- }
-})
+ myLibrary.forEach(book => {
+  for(let key in book) {
+   title.textContent = `${book.title}`
+   card.appendChild(title);
+   author.textContent = `${book.author}`
+   card.appendChild(author)
+   pages.textContent = `${book.pages}`
+   card.appendChild(pages)
+   status.textContent = `${book.status}`
+   card.appendChild(status)
+  }
+ })
+}
