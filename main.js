@@ -1,6 +1,10 @@
-const btn = document.querySelector('.add')
+const addBtn = document.querySelector('.add')
 const cardContainer = document.querySelector('.card-container');
+const dialog = document.querySelector('#dialog');
 
+addBtn.addEventListener('click' , () => {
+ dialog.showModal();
+})
 const myLibrary = [];
 
 function Book(title,author,pages,status) {
@@ -12,8 +16,6 @@ function Book(title,author,pages,status) {
 Book.prototype.info = function() { 
  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`}
 
-
-
 function addBookToLibrary() {
  let title = prompt("Title:")
  let author = prompt("Author:")
@@ -24,7 +26,7 @@ function addBookToLibrary() {
  myLibrary.push(newBook);
  createCard()
 }
-btn.addEventListener('click',addBookToLibrary);
+// btn.addEventListener('click',addBookToLibrary);
 
 
 
@@ -39,13 +41,13 @@ function createCard() {
 
  myLibrary.forEach(book => {
   for(let key in book) {
-   title.textContent = `${book.title}`
+   title.textContent = `Title:${book.title}`
    card.appendChild(title);
-   author.textContent = `${book.author}`
+   author.textContent = `Author:${book.author}`
    card.appendChild(author)
-   pages.textContent = `${book.pages}`
+   pages.textContent = `No. of Pages:${book.pages}`
    card.appendChild(pages)
-   status.textContent = `${book.status}`
+   status.textContent = `Status:${book.status}`
    card.appendChild(status)
   }
  })
