@@ -15,7 +15,7 @@
  margin: 0 auto;
 }
 .function-container {
- background-color: red;
+ background-color: rgb(62, 59, 59);
  display: grid;
  grid-template-columns: 2fr 1fr;
 }
