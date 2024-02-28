@@ -9,14 +9,16 @@
 const addBtn = document.querySelector('.add')
 const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
-const inputs = document.querySelector(".form-container");
+const inputs = document.querySelectorAll("input[type='text']");
 const confirmBtn = dialog.querySelector('#confirmBtn');
 
-let title = dialog.querySelector("#title");
+console.log(inputs)
 
-title.addEventListener('input', () => {
- console.log(title.value)
-})
+// let title = dialog.querySelector("#title");
+
+// title.addEventListener('input', () => {
+//  console.log(title.value)
+// })
 
 
 confirmBtn.addEventListener('click' , (e) => {
@@ -73,5 +75,32 @@ Book.prototype.info = function() {
 
 
  function getInputvalue(){
+  // if(this.id === "title") {
+  //  console.log(this.id.value)
+  // } 
 
+
+  switch (this.id) {
+   case "title":
+   console.log(this.value);
+   break;
+
+   case "author":
+   console.log(this.value);
+   break;
+
+   case "pages":
+   console.log(this.value);
+   break;
+
+   case "status":
+   console.log(this.value);
+   break;
+  }
  }
+
+ inputs.forEach(input => {
+  input.addEventListener('input',() => {
+   console.log(input.value)
+  })
+ })
