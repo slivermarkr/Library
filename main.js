@@ -30,8 +30,6 @@ function Book(title,author,pages,status) {
  this.pages = pages;
  this.status = status;
 }
-// Book.prototype.info = function() { 
-//  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`}
  
  function addBookToLibrary(e) { 
   e.preventDefault();
@@ -77,4 +75,7 @@ function Book(title,author,pages,status) {
   dialog.showModal();
  })
 
- 
+ confirmBtn.addEventListener('click',() => {
+    createCard();
+    dialog.close()
+ });
