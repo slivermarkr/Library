@@ -21,10 +21,6 @@ console.log(inputs)
 // })
 
 
-confirmBtn.addEventListener('click' , (e) => {
- e.preventDefault();
- console.log("clicked");
-})
 const myLibrary = [];
 
 function Book(title,author,pages,status) {
@@ -33,10 +29,14 @@ function Book(title,author,pages,status) {
  this.pages = pages;
  this.status = status;
 }
-Book.prototype.info = function() { 
- return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`}
+// Book.prototype.info = function() { 
+//  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`}
  
  function addBookToLibrary() { 
+  let title;
+  let author;
+  let pages;
+  let status
   let newBook = new Book(title,author,pages,status)
   myLibrary.push(newBook);
   createCard()
@@ -67,40 +67,38 @@ Book.prototype.info = function() {
    }
   })
  }
-
+ 
  
  addBtn.addEventListener('click' , () => {
   dialog.showModal();
  })
-
-
- function getInputvalue(){
-  // if(this.id === "title") {
-  //  console.log(this.id.value)
-  // } 
-
-
+ 
+ 
+ function getInputvalue(title,author,pages ,status){
   switch (this.id) {
    case "title":
-   console.log(this.value);
-   break;
-
+   title = this.value;
+    break;
+    
    case "author":
-   console.log(this.value);
-   break;
-
+   author = this.value;
+    break;
+     
    case "pages":
-   console.log(this.value);
-   break;
-
+   pages = this.value;
+    break;
+      
    case "status":
-   console.log(this.value);
-   break;
-  }
- }
+   status = this.value;
+    break;
+}
 
+confirmBtn.addEventListener('click' , (e) => {
+ e.preventDefault();
  inputs.forEach(input => {
-  input.addEventListener('input',() => {
-   console.log(input.value)
-  })
+  
+  input.addEventListener('input', getInputvalue)
  })
+
+})
+     
