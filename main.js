@@ -11,6 +11,7 @@ const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
 const inputs = document.querySelectorAll("input[type='text']");
 const confirmBtn = dialog.querySelector('#confirmBtn');
+const form = document.querySelector('.form-container');
 
 console.log(inputs)
 
@@ -32,15 +33,18 @@ function Book(title,author,pages,status) {
 // Book.prototype.info = function() { 
 //  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`}
  
- function addBookToLibrary() { 
-  let title;
-  let author;
-  let pages;
-  let status
-  let newBook = new Book(title,author,pages,status)
+ function addBookToLibrary(e) { 
+  e.preventDefault();
+  const title = this.querySelector('[id=title]').value;
+  const author = this.querySelector('[id=author]').value;
+  const pages = this.querySelector('[id=pages]').value;
+  const status = this.querySelector('[id=status]').value;
+  
+  const newBook = new Book(title,author,pages,status);
   myLibrary.push(newBook);
-  createCard()
  }
+
+ form.addEventListener('submit', addBookToLibrary);
  // btn.addEventListener('click',addBookToLibrary);
  
  
@@ -72,33 +76,5 @@ function Book(title,author,pages,status) {
  addBtn.addEventListener('click' , () => {
   dialog.showModal();
  })
- 
- 
- function getInputvalue(title,author,pages ,status){
-  switch (this.id) {
-   case "title":
-   title = this.value;
-    break;
-    
-   case "author":
-   author = this.value;
-    break;
-     
-   case "pages":
-   pages = this.value;
-    break;
-      
-   case "status":
-   status = this.value;
-    break;
-}
 
-confirmBtn.addEventListener('click' , (e) => {
- e.preventDefault();
- inputs.forEach(input => {
-  
-  input.addEventListener('input', getInputvalue)
- })
-
-})
-     
+ 
