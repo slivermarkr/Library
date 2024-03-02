@@ -31,6 +31,10 @@ function Book(title,author,pages,status) {
  this.status = status;
 }
  
+// let firstBook = new Book("The Hobbit","JRR Tolkien",300,"read");
+// myLibrary.push(firstBook);
+// createCard();
+
  function addBookToLibrary(e) { 
   e.preventDefault();
   const title = this.querySelector('[id=title]').value;
@@ -39,6 +43,8 @@ function Book(title,author,pages,status) {
   const status = this.querySelector('[id=status]').value;
   
   const newBook = new Book(title,author,pages,status);
+  console.log(newBook);
+  createCard(myLibrary, cardContainer);
   myLibrary.push(newBook);
  }
 
@@ -47,28 +53,44 @@ function Book(title,author,pages,status) {
  
  
  
- function createCard() {
-  let card = document.createElement("div")
-  card.classList = "card";
-  cardContainer.appendChild(card);
-  let title = document.createElement("div");
-  let author = document.createElement("div");
-  let pages = document.createElement("div");
-  let status = document.createElement("div");
+//  function createCard() {
+//   let card = document.createElement("div")
+//   card.classList = "card";
+//   cardContainer.appendChild(card);
+//   let title = document.createElement("div");
+//   let author = document.createElement("div");
+//   let pages = document.createElement("div");
+//   let status = document.createElement("div");
   
-  myLibrary.forEach(book => {
-   for(let key in book) {
-    title.textContent = `Title:${book.title}`
-    card.appendChild(title);
-    author.textContent = `Author:${book.author}`
-    card.appendChild(author)
-    pages.textContent = `No. of Pages:${book.pages}`
-    card.appendChild(pages)
-    status.textContent = `Status:${book.status}`
-    card.appendChild(status)
-   }
-  })
- }
+//   myLibrary.forEach(book => {
+//    for(let key in book) {
+//       console.log(book);
+//     title.textContent = `Title:${book.title}`
+//     card.appendChild(title);
+//     author.textContent = `Author:${book.author}`
+//     card.appendChild(author)
+//     pages.textContent = `No. of Pages:${book.pages}`
+//     card.appendChild(pages)
+//     status.textContent = `Status:${book.status}`
+//     card.appendChild(status)
+//    }
+//   })
+//  }
+
+function createCard(bookArray = [], inputList) {
+inputList.innerHTML = bookArray.map((input,i) => {
+   return `
+<div>   
+<ul>
+   <li>${input.title}</li>
+   <li>${input.author}</li>
+   <li>${input.pages}</li>
+   <li>${input.status}</li>
+</ul>
+</div>
+   `
+}).join("");
+}
  
  
  addBtn.addEventListener('click' , () => {
