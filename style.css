@@ -6,13 +6,13 @@
  padding: 0;
 }
 
-
 .container {
  border: 3px solid orange;
  border-radius: 5px ;
  display: grid;
  width: 50vw;
  margin: 0 auto;
+ grid-template-rows: 3rem 1fr;
 }
 .function-container {
  background-color: rgb(62, 59, 59);
