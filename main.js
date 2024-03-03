@@ -4,8 +4,7 @@ const dialog = document.querySelector('#dialog');
 const confirmBtn = dialog.querySelector('#confirmBtn');
 const form = document.querySelector('.form-container');
 
-const myLibrary = [
-];
+const myLibrary = [];
 
 function Book(title,author,pages,status) {
  this.title = title;
@@ -36,7 +35,10 @@ inputList.innerHTML = bookArray.map((input) => {
    <li>${input.title}</li>
    <li>${input.author}</li>
    <li>${input.pages}</li>
-   <li>${input.status}</li>
+   <li>
+      <label for="status">${input.status}</label>
+      <input type="checkbox" id="status">   </input>
+   </li>
 </ul>
 </div>
    `
