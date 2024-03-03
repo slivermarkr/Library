@@ -21,8 +21,8 @@ console.log(inputs)
 //  console.log(title.value)
 // })
 
-
-const myLibrary = [];
+const myLibrary = [
+];
 
 function Book(title,author,pages,status) {
  this.title = title;
@@ -43,9 +43,9 @@ function Book(title,author,pages,status) {
   const status = this.querySelector('[id=status]').value;
   
   const newBook = new Book(title,author,pages,status);
+  myLibrary.push(newBook);
   console.log(newBook);
   createCard(myLibrary, cardContainer);
-  myLibrary.push(newBook);
  }
 
  form.addEventListener('submit', addBookToLibrary);
@@ -78,9 +78,9 @@ function Book(title,author,pages,status) {
 //  }
 
 function createCard(bookArray = [], inputList) {
-inputList.innerHTML = bookArray.map((input,i) => {
+inputList.innerHTML = bookArray.map((input) => {
    return `
-<div>   
+<div class="card">   
 <ul>
    <li>${input.title}</li>
    <li>${input.author}</li>
@@ -96,8 +96,7 @@ inputList.innerHTML = bookArray.map((input,i) => {
  addBtn.addEventListener('click' , () => {
   dialog.showModal();
  })
+confirmBtn.addEventListener('click', () => {
+   dialog.close();
+})
 
- confirmBtn.addEventListener('click',() => {
-    createCard();
-    dialog.close()
- });
