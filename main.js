@@ -1,7 +1,6 @@
 const addBtn = document.querySelector('.add')
 const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
-const confirmBtn = dialog.querySelector('#confirmBtn');
 const form = document.querySelector('.form-container');
 
 const myLibrary = [];
@@ -28,21 +27,22 @@ function addBookToLibrary(e) {
 form.addEventListener('submit', addBookToLibrary);
 
 function createCard(bookArray = [], inputList) {
-inputList.innerHTML = bookArray.map((input) => {
+inputList.innerHTML = bookArray.map((input, i) => {
    return `
-<div class="card">   
+<div class="card" data-index${i}>   
 <ul>
    <li>${input.title}</li>
    <li>${input.author}</li>
    <li>${input.pages}</li>
    <li>
       <label for="status">${input.status}</label>
-      <input type="checkbox" id="status">   </input>
+      <input type="checkbox" id="status" >   </input>
    </li>
 </ul>
 </div>
    `
 }).join("");
+
 dialog.close();
 }
  
