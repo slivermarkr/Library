@@ -29,7 +29,8 @@ form.addEventListener('submit', addBookToLibrary);
 function createCard(bookArray = [], inputList) {
 inputList.innerHTML = bookArray.map((input, i) => {
    return `
-<div class="card" data-index${i}>   
+<div class="card" data-index=${i}>   
+<button data-btn=${i}>Remove</button>
 <ul>
    <li>${input.title}</li>
    <li>${input.author}</li>
