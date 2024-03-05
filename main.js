@@ -36,8 +36,8 @@ inputList.innerHTML = bookArray.map((input, i) => {
    <li>${input.author}</li>
    <li>${input.pages}</li>
    <li>
-      <label for="status">${input.status}</label>
-      <input type="checkbox" id="status" >   </input>
+      <label for="status"><span>Status:</span</label>
+      <input type="checkbox" id="status" > </input>
    </li>
 </ul>
 </div>
@@ -51,3 +51,6 @@ addBtn.addEventListener('click' , () => {
    dialog.showModal();
 })
 
+function removeBook(myLibrary) {
+
+}
