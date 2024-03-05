@@ -30,14 +30,14 @@ function createCard(bookArray = [], inputList) {
 inputList.innerHTML = bookArray.map((input, i) => {
    return `
 <div class="card" data-index=${i}>   
-<button data-btn=${i}>Remove</button>
+<button data-btn=${i} class="rmBtn">Remove</button>
 <ul>
    <li>${input.title}</li>
    <li>${input.author}</li>
    <li>${input.pages}</li>
    <li>
       <label for="status"><span>Status:</span</label>
-      <input type="checkbox" id="status" > </input>
+      <input type="checkbox" id="status" class="checked"> </input>
    </li>
 </ul>
 </div>
@@ -51,6 +51,12 @@ addBtn.addEventListener('click' , () => {
    dialog.showModal();
 })
 
-function removeBook(myLibrary) {
+function removeBook(e) {
+   console.log(this.querySelector('div').value);
 
 }
+
+cardContainer.addEventListener('click', (e) => {
+   if(!e.target.className.includes('rmBtn')) return;
+   console.log(e.target);
+})
