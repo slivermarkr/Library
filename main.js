@@ -50,3 +50,11 @@ dialog.close();
 addBtn.addEventListener('click' , () => {
    dialog.showModal();
 })
+
+function remove(e)  {
+   console.log(e.target);
+   const index = e.target.getAttribute('data-btn');
+   console.log(index);
+}
+
+cardContainer.addEventListener('click',remove);
