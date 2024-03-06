@@ -37,7 +37,7 @@ inputList.innerHTML = bookArray.map((input, i) => {
    <li>${input.pages}</li>
    <li>
       <label for="status"><span>Status:</span</label>
-      <input type="checkbox" id="status" class="checked"> </input>
+      <input type="checkbox" id="status-${i}" class="checked"> </input>
    </li>
 </ul>
 </div>
@@ -55,6 +55,9 @@ function remove(e)  {
    console.log(e.target);
    const index = e.target.getAttribute('data-btn');
    console.log(index);
+
+   myLibrary.splice(index,1);
+   createCard(myLibrary,cardContainer);
 }
 
 cardContainer.addEventListener('click',remove);
