@@ -50,13 +50,3 @@ dialog.close();
 addBtn.addEventListener('click' , () => {
    dialog.showModal();
 })
-
-function removeBook(e) {
-   console.log(this.querySelector('div').value);
-
-}
-
-cardContainer.addEventListener('click', (e) => {
-   if(!e.target.className.includes('rmBtn')) return;
-   console.log(e.target);
-})
