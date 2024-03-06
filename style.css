@@ -36,3 +36,6 @@ li {
 input[type='checkbox']:checked{
  content: "Read Already";
 }
+.status-container {
+ display: flex;
+}

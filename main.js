@@ -24,40 +24,43 @@ function addBookToLibrary(e) {
   createCard(myLibrary, cardContainer);
  }
 
-form.addEventListener('submit', addBookToLibrary);
+ function createCard(bookArray = [], inputList) {
+    inputList.innerHTML = bookArray.map((input, i) => {
+       return `
+       <div class="card" data-index=${i}>   
+       <button data-btn=${i} class="rmBtn">Remove</button>
+       <ul>
+       <li>${input.title}</li>
+       <li>${input.author}</li>
+       <li>${input.pages}</li>
+       <li>
+       <div class="status-container">
+          <label for="status"><span>Status:</span</label>
+          <input type="checkbox" id="status-${i}" class="checked"> </input>
+       </div>
+       </li>
+       </ul>
+       </div>
+       `
+      }).join("");
+      
+      dialog.close();
+   }
+   
+   function remove(e)  {
+      if(!e.target.className.includes('rmBtn')) return;
+      console.log(e.target);
+      const index = e.target.getAttribute('data-btn');
+      console.log(index);
+      
+      myLibrary.splice(index,1);
+      createCard(myLibrary,cardContainer);
+   }
+   
+   addBtn.addEventListener('click' , () => {
+      dialog.showModal();
+   })
+   
+   form.addEventListener('submit', addBookToLibrary);
 
-function createCard(bookArray = [], inputList) {
-inputList.innerHTML = bookArray.map((input, i) => {
-   return `
-<div class="card" data-index=${i}>   
-<button data-btn=${i} class="rmBtn">Remove</button>
-<ul>
-   <li>${input.title}</li>
-   <li>${input.author}</li>
-   <li>${input.pages}</li>
-   <li>
-      <label for="status"><span>Status:</span</label>
-      <input type="checkbox" id="status-${i}" class="checked"> </input>
-   </li>
-</ul>
-</div>
-   `
-}).join("");
-
-dialog.close();
-}
- 
-addBtn.addEventListener('click' , () => {
-   dialog.showModal();
-})
-
-function remove(e)  {
-   console.log(e.target);
-   const index = e.target.getAttribute('data-btn');
-   console.log(index);
-
-   myLibrary.splice(index,1);
-   createCard(myLibrary,cardContainer);
-}
-
-cardContainer.addEventListener('click',remove);
+   cardContainer.addEventListener('click',remove);
