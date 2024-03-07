@@ -17,7 +17,7 @@ function addBookToLibrary(e) {
   const title = this.querySelector('[id=title]').value;
   const author = this.querySelector('[id=author]').value;
   const pages = this.querySelector('[id=pages]').value;
-  const status = this.querySelector('[id=status]').value;
+//   const status = this.querySelector('[id=status]').value;
   
   const newBook = new Book(title,author,pages,status);
   myLibrary.push(newBook);
@@ -62,5 +62,12 @@ function addBookToLibrary(e) {
    })
    
    form.addEventListener('submit', addBookToLibrary);
-
+   
    cardContainer.addEventListener('click',removeCard);
+
+   const statusDiv = document.querySelector('.status');
+   console.log(statusDiv)
+   function getStatus(e) {
+      console.log(e.target);
+   }
+   statusDiv.addEventListener('click', getStatus);
