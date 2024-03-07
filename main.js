@@ -47,7 +47,7 @@ function addBookToLibrary(e) {
       dialog.close();
    }
    
-   function remove(e)  {
+   function removeCard(e)  {
       if(!e.target.className.includes('rmBtn')) return;
       console.log(e.target);
       const index = e.target.getAttribute('data-btn');
@@ -63,4 +63,4 @@ function addBookToLibrary(e) {
    
    form.addEventListener('submit', addBookToLibrary);
 
-   cardContainer.addEventListener('click',remove);
+   cardContainer.addEventListener('click',removeCard);
