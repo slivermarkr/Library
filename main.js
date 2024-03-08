@@ -2,6 +2,7 @@ const addBtn = document.querySelector('.add')
 const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
 const form = document.querySelector('.form-container');
+const toggleBtn = document.querySelector('.toggle-btn');
 
 
 const myLibrary = [];
@@ -19,6 +20,7 @@ function addBookToLibrary(e) {
   let title = this.querySelector('[id=title]').value;
   let author = this.querySelector('[id=author]').value;
   let pages = this.querySelector('[id=pages]').value;
+  let status = getStatus();
   
   const newBook = new Book(title,author,pages,status);
   myLibrary.push(newBook);
@@ -35,7 +37,7 @@ function addBookToLibrary(e) {
        <li>${input.author}</li>
        <li>${input.pages}</li>
        <li>
-      <button>${input.status}</button>
+      <button class="toggle-btn" data-toggle=${i}>${input.status}</button>
        </li>
        </ul>
        </div>
@@ -70,18 +72,33 @@ function addBookToLibrary(e) {
    
    cardContainer.addEventListener('click',removeCard);
 
-   const statusDiv = document.querySelector('.status');
-   let read = document.querySelector('#read');
-   let notRead = document.querySelector('#not');
+const statusDiv = document.querySelector('.status');
+const read = document.querySelector('#read');
+const notRead = document.querySelector('#not');
 
+function toggleStatus()
+{
    read.onchange = () => {
       if(read.checked) {
          notRead.checked = false;
+         return "Read";
       }
    }
-
+   
    notRead.onchange = () => {
       if(notRead.checked) {
          read.checked = false;
+         return "Not yet read";
       }
    }
+}
+
+toggleStatus()
+
+function getStatus() {
+   if(read.checked) {
+      return "Read"
+   } else if (notRead.checked) {
+      return "Not read yet";
+   }
+}
