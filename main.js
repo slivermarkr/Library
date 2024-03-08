@@ -3,7 +3,8 @@ const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
 const form = document.querySelector('.form-container');
 const toggleBtn = document.querySelector('.toggle-btn');
-
+const read = document.querySelector('#read');
+const notRead = document.querySelector('#not');
 
 const myLibrary = [];
 
@@ -26,7 +27,7 @@ function addBookToLibrary(e) {
   createCard(myLibrary, cardContainer);
  }
 
- function createCard(bookArray = [], inputList) {
+function createCard(bookArray = [], inputList) {
     inputList.innerHTML = bookArray.map((input, i) => {
        return `
        <div class="card" data-index=${i}>   
@@ -54,6 +55,21 @@ function addBookToLibrary(e) {
       myLibrary.splice(index,1);
       createCard(myLibrary,cardContainer);
    }
+
+   function toggleButton (e){
+      if(!e.target.className.includes('toggle-btn'))return;
+   
+      const index = e.target.getAttribute('data-toggle');
+   
+      if(e.target.textContent === "Read"){
+         myLibrary[index].status = "Not read yet"
+      }else if(
+         e.target.textContent === "Not read yet"){
+         myLibrary[index].status = "Read";
+         }
+         
+      createCard(myLibrary,cardContainer);
+   }
    
    function clearTextInputField() {
       const inputs = document.querySelectorAll('.clear');
@@ -61,21 +77,8 @@ function addBookToLibrary(e) {
          input.value = "";
       })
    }
-   
-   addBtn.addEventListener('click' , () => {
-      dialog.showModal();
-      clearTextInputField()
-   })
-   
-   form.addEventListener('submit', addBookToLibrary);
-   
-   cardContainer.addEventListener('click',removeCard);
 
-const statusDiv = document.querySelector('.status');
-const read = document.querySelector('#read');
-const notRead = document.querySelector('#not');
-
-function toggleStatus()
+   function toggleStatus()
 {
    read.onchange = () => {
       if(read.checked) {
@@ -92,8 +95,6 @@ function toggleStatus()
    }
 }
 
-toggleStatus()
-
 function getStatus() {
    if(read.checked) {
       return "Read"
@@ -101,17 +102,18 @@ function getStatus() {
       return "Not read yet";
    }
 }
+
+addBtn.addEventListener('click' , () => {
+   dialog.showModal();
+   clearTextInputField()
+})
+   
+form.addEventListener('submit', addBookToLibrary);
+   
+cardContainer.addEventListener('click',removeCard);
+
+toggleStatus()
+
 cardContainer.addEventListener('click',toggleButton);
 
-function toggleButton (e){
-   if(!e.target.className.includes('toggle-btn'))return;
-      const index = e.target.getAttribute('data-toggle');
-      console.log(index);
-   if(e.target.textContent === "Read"){
-      myLibrary[index].status = "Not read yet"
-   }else if(
-      e.target.textContent === "Not read yet"){
-      myLibrary[index].status = "Read";
-      }
-   createCard(myLibrary,cardContainer);
-}
+
