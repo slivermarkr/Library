@@ -3,7 +3,9 @@ const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
 const form = document.querySelector('.form-container');
 
+
 const myLibrary = [];
+
 
 function Book(title,author,pages,status) {
  this.title = title;
@@ -17,7 +19,6 @@ function addBookToLibrary(e) {
   let title = this.querySelector('[id=title]').value;
   let author = this.querySelector('[id=author]').value;
   let pages = this.querySelector('[id=pages]').value;
-//   const status = this.querySelector('[id=status]').value;
   
   const newBook = new Book(title,author,pages,status);
   myLibrary.push(newBook);
@@ -34,10 +35,7 @@ function addBookToLibrary(e) {
        <li>${input.author}</li>
        <li>${input.pages}</li>
        <li>
-       <div class="status-container">
-          <label for="status"><span>Status:</span</label>
-          <input type="checkbox" id="status-${i}" class="checked"> </input>
-       </div>
+      <button>${input.status}</button>
        </li>
        </ul>
        </div>
@@ -45,6 +43,7 @@ function addBookToLibrary(e) {
       }).join("");
       
       dialog.close();
+
    }
    
    function removeCard(e)  {
@@ -61,7 +60,7 @@ function addBookToLibrary(e) {
          input.value = "";
       })
    }
-
+   
    addBtn.addEventListener('click' , () => {
       dialog.showModal();
       clearTextInputField()
@@ -72,15 +71,17 @@ function addBookToLibrary(e) {
    cardContainer.addEventListener('click',removeCard);
 
    const statusDiv = document.querySelector('.status');
+   let read = document.querySelector('#read');
+   let notRead = document.querySelector('#not');
 
-   let printStatus;
-
-   function getStatus(e) {
-      if(!e.target.className.includes("readStatus")) return;
-      printStatus = e.target.name;
-      return printStatus;
+   read.onchange = () => {
+      if(read.checked) {
+         notRead.checked = false;
+      }
    }
 
-   statusDiv.addEventListener('click', getStatus);
-
-   console.log(printStatus)
+   notRead.onchange = () => {
+      if(notRead.checked) {
+         read.checked = false;
+      }
+   }
