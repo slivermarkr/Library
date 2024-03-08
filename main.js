@@ -7,7 +7,6 @@ const toggleBtn = document.querySelector('.toggle-btn');
 
 const myLibrary = [];
 
-
 function Book(title,author,pages,status) {
  this.title = title;
  this.author = author;
@@ -35,7 +34,7 @@ function addBookToLibrary(e) {
        <ul>
        <li>${input.title}</li>
        <li>${input.author}</li>
-       <li>${input.pages}</li>
+       <li>${input.pages} pages</li>
        <li>
       <button class="toggle-btn" data-toggle=${i}>${input.status}</button>
        </li>
@@ -101,4 +100,18 @@ function getStatus() {
    } else if (notRead.checked) {
       return "Not read yet";
    }
+}
+cardContainer.addEventListener('click',toggleButton);
+
+function toggleButton (e){
+   if(!e.target.className.includes('toggle-btn'))return;
+      const index = e.target.getAttribute('data-toggle');
+      console.log(index);
+   if(e.target.textContent === "Read"){
+      myLibrary[index].status = "Not read yet"
+   }else if(
+      e.target.textContent === "Not read yet"){
+      myLibrary[index].status = "Read";
+      }
+   createCard(myLibrary,cardContainer);
 }
