@@ -14,9 +14,9 @@ function Book(title,author,pages,status) {
 
 function addBookToLibrary(e) { 
   e.preventDefault();
-  const title = this.querySelector('[id=title]').value;
-  const author = this.querySelector('[id=author]').value;
-  const pages = this.querySelector('[id=pages]').value;
+  let title = this.querySelector('[id=title]').value;
+  let author = this.querySelector('[id=author]').value;
+  let pages = this.querySelector('[id=pages]').value;
 //   const status = this.querySelector('[id=status]').value;
   
   const newBook = new Book(title,author,pages,status);
@@ -49,16 +49,22 @@ function addBookToLibrary(e) {
    
    function removeCard(e)  {
       if(!e.target.className.includes('rmBtn')) return;
-      console.log(e.target);
+
       const index = e.target.getAttribute('data-btn');
-      console.log(index);
-      
       myLibrary.splice(index,1);
       createCard(myLibrary,cardContainer);
    }
    
+   function clearTextInputField() {
+      const inputs = document.querySelectorAll('.clear');
+      inputs.forEach(input => {
+         input.value = "";
+      })
+   }
+
    addBtn.addEventListener('click' , () => {
       dialog.showModal();
+      clearTextInputField()
    })
    
    form.addEventListener('submit', addBookToLibrary);
@@ -68,6 +74,7 @@ function addBookToLibrary(e) {
    const statusDiv = document.querySelector('.status');
    console.log(statusDiv)
    function getStatus(e) {
-      console.log(e.target);
+      if(!e.target.className.includes("readStatus")) return;
+      console.log(e.target.name);
    }
    statusDiv.addEventListener('click', getStatus);
