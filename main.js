@@ -96,8 +96,11 @@ function createCard(bookArray = [], inputList) {
 }
 
 function getStatus() {
+   if(!read.checked && !notRead.checked){
+      return "Read";
+   }
    if(read.checked) {
-      return "Read"
+      return "Read";
    } else if (notRead.checked) {
       return "Not read yet";
    }
@@ -112,7 +115,7 @@ form.addEventListener('submit', addBookToLibrary);
    
 cardContainer.addEventListener('click',removeCard);
 
-toggleStatus()
+toggleStatus();
 
 cardContainer.addEventListener('click',toggleButton);
 
