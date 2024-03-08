@@ -72,9 +72,15 @@ function addBookToLibrary(e) {
    cardContainer.addEventListener('click',removeCard);
 
    const statusDiv = document.querySelector('.status');
-   console.log(statusDiv)
+
+   let printStatus;
+
    function getStatus(e) {
       if(!e.target.className.includes("readStatus")) return;
-      console.log(e.target.name);
+      printStatus = e.target.name;
+      return printStatus;
    }
+
    statusDiv.addEventListener('click', getStatus);
+
+   console.log(printStatus)
