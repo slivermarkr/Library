@@ -44,16 +44,16 @@ function createCard(bookArray = [], inputList) {
        `
       }).join("");
       
-      dialog.close();
-
+      dialog.close()
    }
    
    function removeCard(e)  {
       if(!e.target.className.includes('rmBtn')) return;
-
+      
+      if(confirm("You want to remove this book?")){
       const index = e.target.getAttribute('data-btn');
       myLibrary.splice(index,1);
-      createCard(myLibrary,cardContainer);
+      createCard(myLibrary,cardContainer);}
    }
 
    function toggleButton (e){
@@ -78,19 +78,16 @@ function createCard(bookArray = [], inputList) {
       })
    }
 
-   function toggleStatus()
-{
+   function toggleStatus(){
+
    read.onchange = () => {
       if(read.checked) {
          notRead.checked = false;
-         return "Read";
       }
    }
-   
    notRead.onchange = () => {
       if(notRead.checked) {
          read.checked = false;
-         return "Not yet read";
       }
    }
 }
@@ -100,7 +97,7 @@ function getStatus() {
       return "Read";
    }
    if(read.checked) {
-      return "Read";
+      return "Read"
    } else if (notRead.checked) {
       return "Not read yet";
    }
@@ -112,11 +109,7 @@ addBtn.addEventListener('click' , () => {
 })
    
 form.addEventListener('submit', addBookToLibrary);
-   
 cardContainer.addEventListener('click',removeCard);
-
-toggleStatus();
-
 cardContainer.addEventListener('click',toggleButton);
-
+toggleStatus();
 
