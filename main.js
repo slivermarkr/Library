@@ -5,6 +5,7 @@ const form = document.querySelector('.form-container');
 const toggleBtn = document.querySelector('.toggle-btn');
 const isRead = document.querySelector('#read');
 const notRead = document.querySelector('#not');
+const cancelBtn = document.querySelector('#cancelBtn');
 
 const myLibrary = [];
 
@@ -15,7 +16,7 @@ function Book(title,author,pages,status) {
  this.status = status;
 }
 
-function addBookToLibrary(e) { 
+function addBookToLibrary(e) {
   e.preventDefault();
   let title = this.querySelector('[id=title]').value;
   let author = this.querySelector('[id=author]').value;
@@ -32,14 +33,16 @@ function createCard(bookArray = [], inputList) {
        return `
        <div class="card" data-index=${i}>   
        <div class="rmContainer"><button data-btn=${i} class="rmBtn">Remove</button></div>
-       <ul>
-       <li>${input.title}</li>
-       <li>${input.author}</li>
-       <li>${input.pages} pages</li>
-       <li>
-      <button class="toggle-btn" data-toggle=${i}>${input.status}</button>
-       </li>
-       </ul>
+       <div class="inputsContainer">
+          <ul>
+          <li>${input.title}</li>
+          <li>${input.author}</li>
+          <li>${input.pages} pages</li>
+          <li>
+                <button class="toggle-btn" data-toggle=${i}>${input.status}</button>
+          </li>
+          </ul>
+       </div>
        </div>
        `
       }).join("");
@@ -109,7 +112,7 @@ addBtn.addEventListener('click' , () => {
    clearTextInputField()
 })
    
-form.addEventListener('submit', addBookToLibrary);
+form.addEventListener('submit',addBookToLibrary);
 cardContainer.addEventListener('click',removeCard);
 cardContainer.addEventListener('click',toggleButton);
 toggleStatus();
@@ -120,3 +123,4 @@ let book3 = new Book("No Longer Human","Osamu Dazai", 600, "Read");
 let book4 = new Book("Norwegian Wood","Haruki Murakami", 300, "Read");
 myLibrary.push(book1,book2,book3,book4);;
 createCard(myLibrary,cardContainer);
+
