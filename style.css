@@ -5,7 +5,11 @@
  margin: 0;
  padding: 0;
 }
-
+header {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 .container {
  border: 3px solid orange;
  border-radius: 5px ;
@@ -15,27 +19,31 @@
  grid-template-rows: 3rem 1fr;
 }
 .function-container {
- background-color: rgb(62, 59, 59);
+ background-color: rgb(136, 121, 121);
  display: grid;
  grid-template-columns: 2fr 1fr;
 }
 .card-container {
  display: grid;
  grid-template-columns: 1fr 1fr;
- gap: 1rem;
+ gap: .5rem;
+ margin: .5rem;
 }
 
 .card {
- border: 2px solid black;
+ border: 2px solid rgb(245, 179, 103);
+ display: grid;
+ grid-template-rows: 2rem 1fr;
 }
 
 li {
  list-style-type: none;
 }
 
-input[type='checkbox']:checked{
- content: "Read Already";
-}
 .status-container {
  display: flex;
+}
+.card ul {
+ justify-self: center;
+ align-self: center;
 }

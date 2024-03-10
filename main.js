@@ -3,7 +3,7 @@ const cardContainer = document.querySelector('.card-container');
 const dialog = document.querySelector('#dialog');
 const form = document.querySelector('.form-container');
 const toggleBtn = document.querySelector('.toggle-btn');
-const read = document.querySelector('#read');
+const isRead = document.querySelector('#read');
 const notRead = document.querySelector('#not');
 
 const myLibrary = [];
@@ -31,7 +31,7 @@ function createCard(bookArray = [], inputList) {
     inputList.innerHTML = bookArray.map((input, i) => {
        return `
        <div class="card" data-index=${i}>   
-       <button data-btn=${i} class="rmBtn">Remove</button>
+       <div class="rmContainer"><button data-btn=${i} class="rmBtn">Remove</button></div>
        <ul>
        <li>${input.title}</li>
        <li>${input.author}</li>
@@ -51,6 +51,7 @@ function createCard(bookArray = [], inputList) {
       if(!e.target.className.includes('rmBtn')) return;
       
       if(confirm("You want to remove this book?")){
+
       const index = e.target.getAttribute('data-btn');
       myLibrary.splice(index,1);
       createCard(myLibrary,cardContainer);}
@@ -81,22 +82,22 @@ function createCard(bookArray = [], inputList) {
    function toggleStatus(){
 
    read.onchange = () => {
-      if(read.checked) {
+      if(isRead.checked) {
          notRead.checked = false;
       }
    }
    notRead.onchange = () => {
       if(notRead.checked) {
-         read.checked = false;
+         isRead.checked = false;
       }
    }
 }
 
 function getStatus() {
-   if(!read.checked && !notRead.checked){
+   if(!isRead.checked && !notRead.checked){
       return "Read";
    }
-   if(read.checked) {
+   if(isRead.checked) {
       return "Read"
    } else if (notRead.checked) {
       return "Not read yet";
@@ -113,3 +114,9 @@ cardContainer.addEventListener('click',removeCard);
 cardContainer.addEventListener('click',toggleButton);
 toggleStatus();
 
+let book1 = new Book("The Hobbit","J.R.R Tolkien", 900, "Read");
+let book2 = new Book("The Silmaril","J.R.R Tolkien", 900, "Read");
+let book3 = new Book("No Longer Human","Osamu Dazai", 600, "Read");
+let book4 = new Book("Norwegian Wood","Haruki Murakami", 300, "Read");
+myLibrary.push(book1,book2,book3,book4);;
+createCard(myLibrary,cardContainer);
