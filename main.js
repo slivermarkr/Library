@@ -5,7 +5,7 @@ const form = document.querySelector('.form-container');
 const toggleBtn = document.querySelector('.toggle-btn');
 const isRead = document.querySelector('#read');
 const notRead = document.querySelector('#not');
-const cancelBtn = document.querySelector('#cancelBtn');
+const cancelBtn = document.querySelector('.cancelBtn');
 
 const myLibrary = [];
 
@@ -46,7 +46,6 @@ function createCard(bookArray = [], inputList) {
        </div>
        `
       }).join("");
-      
       dialog.close()
    }
    
@@ -118,9 +117,12 @@ cardContainer.addEventListener('click',toggleButton);
 toggleStatus();
 
 let book1 = new Book("The Hobbit","J.R.R Tolkien", 900, "Read");
-let book2 = new Book("The Silmaril","J.R.R Tolkien", 900, "Read");
+let book2 = new Book("The Silmarillion","J.R.R Tolkien", 900, "Read");
 let book3 = new Book("No Longer Human","Osamu Dazai", 600, "Read");
 let book4 = new Book("Norwegian Wood","Haruki Murakami", 300, "Read");
 myLibrary.push(book1,book2,book3,book4);;
 createCard(myLibrary,cardContainer);
 
+// cancelBtn.addEventListener('click', () => {
+//    dialog.close()
+// })
