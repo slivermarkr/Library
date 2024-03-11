@@ -72,3 +72,15 @@ ul > li:last-child {
  gap: .5rem;
  font-size: 1.5rem;
 }
+ 
+form{
+ display: grid;
+ grid-template-columns: 1fr;
+ width: 250px;
+}
+.container {
+ min-height: 100dvh;
+}
+dialog {
+ margin: 0 auto;
+}
